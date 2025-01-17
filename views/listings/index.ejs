@@ -1,0 +1,208 @@
+<% layout("/layouts/boilerplate")%>
+
+<style>
+    /* Navbar-like Styling */
+    #filters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Filter Items */
+    .filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fe424d;
+        cursor: pointer;
+        margin: 0 1rem;
+        transition: all 0.1s ease-in-out;
+        opacity: 0.9;
+    }
+
+    .filter:hover {
+        color: red;
+        opacity: 1;
+        font-weight: 500;
+
+    }
+
+    .filter i {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .filter p {
+        font-size: 0.9rem;
+        margin: 0;
+        color: black;
+    }
+
+    /* Toggle Switch */
+    .tax-toggle {
+        margin-left: 1.5rem;
+    }
+
+    .form-check-label {
+        font-size: 0.9rem;
+    }
+
+    .form-check-input {
+        cursor: pointer;
+        width: 2rem;
+        height: 1rem;
+        background-color: #ccc;
+        border-radius: 1rem;
+        position: relative;
+        transition: background-color 0.3s;
+    }
+
+    .form-check-input:checked {
+        background-color: red;
+    }
+
+    .form-check-input:before {
+        content: '';
+        position: absolute;
+        width: 0.8rem;
+        height: 0.8rem;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 0.1rem;
+        transform: translateY(-50%);
+        transition: left 0.3s;
+    }
+
+    .form-check-input:checked:before {
+        left: 1.1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        #filters {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .filter {
+            margin: 0.5rem;
+        }
+
+        .tax-toggle {
+            margin-left: 0;
+        }
+    }
+</style>
+
+<div id="filters">
+    <!-- Filter Items -->
+    <div class="filter mt-3">
+        <i class="fa-solid fa-bed"></i>
+        <p>Trending</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Rooms</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-mountain-city"></i>
+        <p>Iconic Cities</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-brands fa-fort-awesome"></i>
+        <p>Castles</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-snowflake"></i>
+        <p>Arctic</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-tents"></i>
+        <p>Camping</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-cow"></i>
+        <p>Farms</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Awesome Pools</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-mountain"></i>
+        <p>Mountains</p>
+    </div>
+
+    <!-- Toggle Switch -->
+    <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        </div>
+    </div>
+</div>
+
+    <div class="row row-cols-lg-3 eow-cols-md-2 mt-3 row-cols-sm-1">
+        <% for(let listing of allListings){%>
+            <a href="/listings/<%= listing._id %> " class="listing-link">
+            <div class="card col listing-card">
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <b><%= listing.title %></b> <br>
+                    ₹<%= listing.price.toLocaleString("en-IN") %>
+
+                  </p>
+                </div>
+            </div>
+            </a>
+        <% } %>
+    </div>
+
+
+
+<script>
+    document.getElementById("flexSwitchCheckDefault").addEventListener("change", function () {
+    let allPrices = document.querySelectorAll(".card-text");
+    allPrices.forEach(priceElement => {
+        let textParts = priceElement.innerHTML.split("<br>");
+        
+        if (textParts.length < 2) return; // Skip if format doesn't match
+
+        let namePart = textParts[0]; // The name part
+        let priceText = textParts[1]; // The price part
+
+        // Extract the numeric price from the price text
+        let match = priceText.match(/₹([\d,]+)/);
+        if (!match) return; // Skip if no price is found
+
+        let originalPrice = parseInt(match[1].replace(/,/g, ""), 10);
+        let tax = Math.round(0.18 * originalPrice); // Calculate tax
+        let total = originalPrice + tax;
+
+        if (this.checked) {
+            // Add tax total to the price text with the total italicized
+            priceElement.innerHTML = `${namePart}<br>₹${originalPrice.toLocaleString("en-IN")} (<i>Total: ₹${total.toLocaleString("en-IN")}</i>)`;
+        } else {
+            // Revert to just the original price
+            priceElement.innerHTML = `${namePart}<br>₹${originalPrice.toLocaleString("en-IN")}`;
+        }
+    });
+});
+
+    
+</script>
