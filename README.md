@@ -47,71 +47,75 @@ To get started with **List&Stay**, follow these steps:
    ```bash
     git clone https://github.com/aj-024/List-Stay.git
 2. **Navigate to the Project Directory**:
-  ```bash
+     ```bash
     cd List-Stay
+     ```
 3. **Install Dependencies**:
-  ```bash
+     ```bash
     npm install
+   ```
 4. **Run the Application**:
-  ```bash
+     ```bash
     npm start
+     ```
 
 ---
 
 ## Project Structure
-```
-MAJORPROJECT
-├── controllers
-│   └── listings.js
-│   └── user.js
-│   └── review.js
-├── init
-│   └── data.js
-│   └── index.js
-├── models
-│   └── listing.js
-│   └── review.js
-│   └── user.js
-├── node_modules
-├── public
-│   ├── css
-│   │   └── ratings.css
-│   │   └── style.css
-│   ├── js
-│       └── map.js
-│       └── script.js
-├── routes
-│   └── listings.js
-│   └── review.js
-│   └── user.js
-├── utils
-│   └── ExpressError.js
-│   └── wrapAsync.js
-├── views
-│   ├── includes
-│   │   └── flash.ejs
-│   │   └── footer.ejs
-│   │   └── navbar.ejs
-│   ├── layouts
-│   │   └── boilerplate.ejs
-│   ├── listings
-│   │   └── edit.ejs
-│   │   └── index.ejs
-│   │   └── new.ejs
-│   │   └── show.ejs
-│   └── users
-│       └── login.ejs
-│       └── signup.ejs
-│       └── error.ejs
-├── .env
-├── .gitignore
-├── app.js
-├── cloudConfig.js
-├── middleware.js
-├── package-lock.json
-├── package.json
-├── README.md
-└── schema.js
+   ```
+   MAJORPROJECT
+   ├── controllers
+   │   └── listings.js
+   │   └── user.js
+   │   └── review.js
+   ├── init
+   │   └── data.js
+   │   └── index.js
+   ├── models
+   │   └── listing.js
+   │   └── review.js
+   │   └── user.js
+   ├── node_modules
+   ├── public
+   │   ├── css
+   │   │   └── ratings.css
+   │   │   └── style.css
+   │   ├── js
+   │       └── map.js
+   │       └── script.js
+   ├── routes
+   │   └── listings.js
+   │   └── review.js
+   │   └── user.js
+   ├── utils
+   │   └── ExpressError.js
+   │   └── wrapAsync.js
+   ├── views
+   │   ├── includes
+   │   │   └── flash.ejs
+   │   │   └── footer.ejs
+   │   │   └── navbar.ejs
+   │   ├── layouts
+   │   │   └── boilerplate.ejs
+   │   ├── listings
+   │   │   └── edit.ejs
+   │   │   └── index.ejs
+   │   │   └── new.ejs
+   │   │   └── show.ejs
+   │   └── users
+   │       └── login.ejs
+   │       └── signup.ejs
+   │       └── error.ejs
+   ├── .env
+   ├── .gitignore
+   ├── app.js
+   ├── cloudConfig.js
+   ├── middleware.js
+   ├── package-lock.json
+   ├── package.json
+   ├── README.md
+   └── schema.js
+   ```
 
 ## Contributing
 
