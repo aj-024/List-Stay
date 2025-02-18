@@ -56,7 +56,7 @@ To get started with **List&Stay**, follow these steps:
    ```
 4. **Run the Application**:
      ```bash
-    npm start
+    nodemon app.js
      ```
 
 ---
